@@ -1,2 +1,2 @@
-class TripsController < ApplicationController
+class Api::V1::TripsController < ApplicationController
 end
