@@ -66,4 +66,5 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem "devise"
 gem "devise_token_auth"
