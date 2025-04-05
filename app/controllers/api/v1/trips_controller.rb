@@ -3,7 +3,6 @@ class Api::V1::TripsController < ApplicationController
 
   def index
     user = User.find_by(email: request.headers[:uid])
-    require 'pry'; binding.pry
     if user
       render json: user.trips.as_json, status: :ok
     else
