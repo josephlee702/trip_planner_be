@@ -1,6 +1,6 @@
-User.destroy_all
-Trip.destroy_all
 Itinerary.destroy_all
+Trip.destroy_all
+User.destroy_all
 
 user1 = User.create(
     name: "Joseph Lee", 
