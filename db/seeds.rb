@@ -1,9 +1,28 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+User.destroy_all
+Trip.destroy_all
+Itinerary.destroy_all
+
+user1 = User.create(
+    name: "Joseph Lee", 
+    email: "jhjlee702@gmail.com", 
+    password: "ffffff", 
+    password_confirmation: "ffffff"
+  )
+
+japan_trip = Trip.create(
+    name: "S. Korea and Japan '25", 
+    start_date: "2025-04-01", 
+    end_date: "2025-04-20", 
+    destinations: ["South Korea", "Japan"]
+  )
+
+itinerary1 = Itinerary.create(
+  name: "Day 1", 
+    description: "Start the trip in Tokyo!", 
+    start_date: "2025-04-01", 
+    end_date: "2025-04-01", 
+    trip_id: japan_trip.id, 
+    user_id: user1.id
+  )
+
+puts "Seeded successfully!"
