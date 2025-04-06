@@ -15,7 +15,7 @@ class Api::V1::TripsController < ApplicationController
   end
 
   def create
-    trip = trip.new(trip_params)
+    trip = Trip.new(trip_params)
 
     if trip.save
       render json: trip, status: 201
@@ -40,12 +40,12 @@ class Api::V1::TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :user_id)
+    params.require(:trip).permit(:name, :start_date, :end_date, :destinations => [])
   end
   
   #designates trip to perform show, update and destroy actions on
   def set_trip
-    @trip = trip.find_by(id: params[:id])
+    @trip = Trip.find_by(id: params[:id])
     render json: { error: "Trip not found." }, status: 404 unless @trip
   end
 end
