@@ -3,10 +3,15 @@ class Api::V1::ItinerariesController < ApplicationController
 
   def index
     user = User.find_by(email: request.headers[:uid])
+    
     if user
-      render json: user.itinerarys.as_json, status: :ok
-    else
-      render json: { error: "Unauthorized" }, status: :unauthorized
+      trip = user.trips.find_by(id: params[:trip_id])
+
+      if trip
+        render json: trip.itineraries, status: :ok
+      else
+        render json: { error: "Unauthorized" }, status: :unauthorized
+      end
     end
   end
 
