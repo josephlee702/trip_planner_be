@@ -3,7 +3,7 @@ class Api::V1::ItinerariesController < ApplicationController
 
   def index
     user = User.find_by(email: request.headers[:uid])
-    
+
     if user
       trip = user.trips.find_by(id: params[:trip_id])
 
@@ -20,12 +20,16 @@ class Api::V1::ItinerariesController < ApplicationController
   end
 
   def create
-    itinerary = Itinerary.new(itinerary_params)
+    trip = Trip.find_by(id: params[:trip_id])
 
-    if itinerary.save
-      render json: itinerary, status: 201
-    else
-      render json: { error: itinerary.errors.full_messages }, status: 402
+    if trip
+      itinerary = trip.itineraries.new(itinerary_params)
+
+      if itinerary.save
+        render json: itinerary, status: 201
+      else
+        render json: { error: itinerary.errors.full_messages }, status: 402
+      end
     end
   end
 
@@ -51,6 +55,6 @@ class Api::V1::ItinerariesController < ApplicationController
   #designates itinerary to perform show, update and destroy actions on
   def set_itinerary
     @itinerary = Itinerary.find_by(id: params[:id])
-    render json: { error: "Trip not found." }, status: 404 unless @trip
+    render json: { error: "Trip not found." }, status: 404 unless @itinerary
   end
 end
