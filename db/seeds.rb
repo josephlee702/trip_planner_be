@@ -16,6 +16,8 @@ japan_trip = Trip.create(
     destinations: ["South Korea", "Japan"]
   )
 
+  user.trips << japan_trip
+
 itinerary1 = Itinerary.create(
   name: "Day 1", 
     description: "Start the trip in Tokyo!", 
