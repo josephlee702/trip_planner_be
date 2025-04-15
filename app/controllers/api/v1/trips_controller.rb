@@ -16,6 +16,8 @@ class Api::V1::TripsController < ApplicationController
 
   def create
     trip = Trip.new(trip_params)
+    user = User.find_by(uid: request.headers[:uid])
+    trip.users << user
 
     if trip.save
       render json: trip, status: 201
