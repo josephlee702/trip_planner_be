@@ -11,7 +11,8 @@ class Api::V1::TripsController < ApplicationController
   end
 
   def show
-    render json: @trip.as_json, status: 200
+    trip = Trip.find(params[:id])
+    render json: trip, include: [:itineraries], status: 200
   end
 
   def create
