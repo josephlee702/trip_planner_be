@@ -1,7 +1,7 @@
 class Trip < ApplicationRecord
   has_many :trips_users, dependent: :destroy
   has_many :users, through: :trips_users
-  has_many :itineraries
+  has_many :itineraries, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
   validates :start_date, presence: true
