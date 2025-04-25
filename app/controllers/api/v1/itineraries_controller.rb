@@ -49,7 +49,7 @@ class Api::V1::ItinerariesController < ApplicationController
   private
 
   def itinerary_params
-    params.require(:itinerary).permit(:name, :description, :start_date, :end_date, :user_id, :trip_id)
+    params.require(:itinerary).permit(:name, :description, :date, :user_id, :trip_id)
   end
   
   #designates itinerary to perform show, update and destroy actions on
